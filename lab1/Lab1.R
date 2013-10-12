@@ -18,9 +18,11 @@ attributes(nw)
 
 # Q6
 nw[8,'numbers']
+nw[8,1]
 
 # Q7
 nw[8,'words']
+nw[8,2]
 
 # Q8
 a=matrix(1:10,2,5)
