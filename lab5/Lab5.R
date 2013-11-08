@@ -35,6 +35,7 @@ anova(model2, model3)
 model3.z <- lm(scale(data$salary) ~ scale(data$courses) + scale(data$years))
 summary(model3.z)
 round(confint(model3),2)
+round(confint(model3.z),2)
 
 # Q5
 # sample
@@ -65,4 +66,10 @@ anova(model1.51_70, model2.51_70)
 
 # Q9
 summary(model3.51_70)
-data.predicted <-fitted(model3.51_70)
+data.51_70$predicted <-fitted(model3.51_70)
+round(cor(data.51_70[2:5]),2)
+
+# Q10
+data.51_70$resid <-resid(model3.51_70)
+round(cor(data.51_70[2:6]),2)
+cor.test(data.51_70$predicted, data.51_70$resid)
