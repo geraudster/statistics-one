@@ -1,3 +1,6 @@
+#install.packages('reshape')
+#install.packages('lsr')
+
 library(psych)
 library(car)
 library(lsr)
@@ -52,5 +55,21 @@ data.reshape.DS <- subset(data.reshape, data.reshape$condition == 'DS')
 data.reshape.WM <- subset(data.reshape, data.reshape$condition == 'WM')
 data.reshape.PE <- subset(data.reshape, data.reshape$condition == 'PE')
 
-t.test(data.reshape$gain ~ data.reshape$condition, var.equal = T)
+t.test(data.reshape.DS$gain, data.reshape.WM$gain, var.equal = T)
 
+t.test(data.reshape.WM$gain, data.reshape.PE$gain, var.equal = T)
+
+t.test(data.reshape.PE$gain, data.reshape.DS$gain, var.equal = T)
+
+# Q5
+leveneTest(data.reshape$gain ~ data.reshape$condition)
+
+# Q6
+aov.model <- aov(data.reshape$gain ~ data.reshape$condition)
+summary(aov.model)
+
+# Q7
+etaSquared(aov.model, anova=T)
+
+# Q8
+TukeyHSD(aov.model)
